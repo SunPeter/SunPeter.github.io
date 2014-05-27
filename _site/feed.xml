@@ -3,8 +3,21 @@
   <channel>
     <title>老孙家热干面</title>
     <description>低价出事优（幼）质（稚）高x帅！</description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://sunpeter.github.io/</link>
+    <atom:link href="http://sunpeter.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>学习jekyll</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;由于 Jekyll 的灵活性，有很多方式可以解决这个问题。一种常用做法是在工程的根目录下 创建一个文件夹，命名为assets 或者 downloads，将图片文件，下载文件或者其它的 资源放到这个文件夹下。然后在任何一篇文章中，它们都可以用站点的根目录来进行引用。&lt;br /&gt;
+&lt;img src=&quot;http://sunpeter.github.io/assets/head.jpg&quot; alt=&quot;hahaha&quot; title=&quot;头像&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Wed, 28 May 2014 06:14:21 +0800</pubDate>
+        <link>http://sunpeter.github.io/blog/2014/05/28/learn-jekyll/</link>
+        <guid isPermaLink="true">http://sunpeter.github.io/blog/2014/05/28/learn-jekyll/</guid>
+      </item>
     
       <item>
         <title>乔迁之喜，纪念一下</title>
@@ -20,8 +33,8 @@
 
 </description>
         <pubDate>Wed, 28 May 2014 05:37:21 +0800</pubDate>
-        <link>http://yourdomain.com/blog/2014/05/28/firstday/</link>
-        <guid isPermaLink="true">http://yourdomain.com/blog/2014/05/28/firstday/</guid>
+        <link>http://sunpeter.github.io/blog/2014/05/28/firstday/</link>
+        <guid isPermaLink="true">http://sunpeter.github.io/blog/2014/05/28/firstday/</guid>
       </item>
     
   </channel>

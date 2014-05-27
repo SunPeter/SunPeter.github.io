@@ -4,8 +4,8 @@ title:  "乔迁之喜，纪念一下"
 date:   2014-05-27 21:37:21
 categories: blog
 ---
-代码块高亮，我试一把；
-{% highlight js %}
+代码块高亮，我试一把；  linenos：显示代码行数
+{% highlight js linenos%}
 function test(){
 	var bar=document.getElementById("bar");
 	console.log(bar.innerHTML);
