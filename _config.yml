@@ -4,7 +4,7 @@ email: ssd3237649@gmail.com
 description: "低价出事优（幼）质（稚）高x帅！"
 baseurl: ""
 url: "http://sunpeter.github.io"
-
+paginate: 5
 # Build settings
 markdown: kramdown
 permalink: pretty
