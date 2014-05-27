@@ -8,5 +8,9 @@ categories: blog
 
 ![hahaha]({{site.url}}/assets/head.jpg "头像")
 
+{{site.time}}
+
+{{page.date}}
+
 
 
