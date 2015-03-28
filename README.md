@@ -1,13 +1,29 @@
+# jekyll-qck-theme
 
-# [参照官方文档][1]！ 其他的都是骗子
+A simple and customizable theme for Jekyll.
 
-[1]:https://help.github.com/articles/creating-project-pages-manually
+## Features
 
-1 新建username.github.io 的仓库  
-2 `clone down `   
-3 `git checkout —orphan gh-pages  `  
-创建一个没有父节点的分支gh-pages。因为github规定，只有该分支中的页面，才会生成网页文件
-4 `git rm -rf .`    
-5 `printf “content” >index.html  `  
-6 `add / commit  `  
-7 `git push origin gh-pages `   
+* A lot of Markdown features
+* Tags list page
+* Monthly Archives page
+* Search feature without any Jekyll plugins
+* `<!--more-->` tag feature
+* Sticky side nav
+* Responsive
+* OGP ready
+* Share buttons ready
+
+## Getting started
+
+1. [Fork me](https://github.com/qckanemoto/jekyll-qck-theme/fork)
+2. Modify `_config.yml`
+3. Modify `_sass/base/_variables.scss` if you need to change colors or font sizes
+4. Add new posts into `_posts/` :smiley:
+
+## Demo
+
+You can see live demo at below:
+
+* http://qckanemoto.github.io
+* http://tech.quartetcom.co.jp

@@ -2,19 +2,30 @@
 layout: default
 ---
 
-<div class="home">
-
-  <h1>Posts</h1>
-
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+{% for post in paginator.posts %}
+<div class="article-wrapper">
+    {% if site.share_buttons %}
+    <article>
+    {% else %}
+    <article>
+    {% endif %}
+    {% include article-header.html page=post link=true %}
+        <section class="post-content">
+            {% assign excerpt_size = post.excerpt | size %}
+            {% assign content_size = post.content | size %}
+            {% if excerpt_size < content_size %}
+            {{ post.excerpt }}
+            <a class="btn" href="{{ post.url }}">{{ site.str_read_more }}</a>
+            {% else %}
+            {{ post.content }}
+            {% endif %}
+        </section>
+    </article>
 </div>
+
+{% if forloop.last != true %}
+<hr/>
+{% endif %}
+{% endfor %}
+
+{% include paginator.html %}
