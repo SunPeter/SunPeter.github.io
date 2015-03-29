@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta name="apple-touch-fullscreen" content="no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/cubemap.css">
+</head>
+
+<body>
+	<div id="dashboard">
+		<label for="x">水平视角</label>
+		左<input type="range" id="x" min="-2000" max="2000">右
+        <br>
+		<label for="y">垂直视角</label>
+		上<input type="range" id="y" min="-2000" max="2000">下
+        <br>
+        <label for="z">视野距离</label>
+        <input type="range" id="z" min="0" max="500">
+        <br>
+        <label for="rotatex">rotatex</label>
+        0<input type="range" id="rotatex" min="0" max="360">360deg
+        <br>
+        <label for="rotatex">rotatey</label>
+        0<input type="range" id="rotatey" min="0" max="360">360deg
+        <br>
+        <label for="rotatex">rotatez</label>
+        0<input type="range" id="rotatez" min="0" max="360">360deg
+	</div>
+    <div id="stage">
+        <div id="cube">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+    </div>
+</body>
+<script src="js/cube.js"></script>
+</html>

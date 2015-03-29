@@ -1,0 +1,78 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+body{
+	width:100%;
+}
+#dashboard{
+	position: absolute;
+	left:0;
+	top:0;
+	z-index:100;
+}
+#stage{
+	-webkit-perspective:100px;
+	-webkit-perspective-origin:center;
+	height:100%;
+}
+#cube{
+	position: absolute;
+	width:200px;
+	height:200px;
+	left:50%;
+	top:50%;
+	margin:-100px 0 0 -100px;
+	-webkit-transform-style:preserve-3d;
+	i{
+		position: absolute;
+		display: block;
+		width:200px;
+		height: 200px;
+		overflow: hidden;
+		text-align: center;
+		line-height: 200px;
+		font-size: 40px;
+		-webkit-transform-origin:center center 0;
+		
+		&:nth-child(1){
+			-webkit-transform: rotateY(180deg) translateZ(-100px);
+			background: url("../map/001.jpg") no-repeat;
+			background-size:cover;
+			// background: #F00;
+		}
+		&:nth-child(2){
+			-webkit-transform: rotateY(90deg) translateZ(-100px);
+			background: url("../map/002.jpg") no-repeat;
+			background-size:cover;
+			// background: #0F0;
+		}
+		&:nth-child(3){
+			-webkit-transform: rotateY(-90deg) translateZ(-100px);;
+			background: url("../map/004.jpg") no-repeat;
+			background-size:cover;
+			// background:#00F;
+		}
+		&:nth-child(4){
+			// background: #FF0;
+			-webkit-transform:rotateX(-90deg) translateZ(-100px);
+			background: url("../map/005.jpg") no-repeat;
+			background-size:cover;
+		}
+		&:nth-child(5){
+			-webkit-transform: rotateX(90deg) translateZ(-100px);
+			background: url("../map/006.jpg") no-repeat;
+			background-size:cover;
+			// background:#0FF;
+		}
+		&:nth-child(6){
+			-webkit-transform: rotateZ(0) translateZ(-100px);
+			background: url("../map/003.jpg") no-repeat;
+			background-size:cover;
+
+			// background: #F0F;
+		}
+	}
+}
