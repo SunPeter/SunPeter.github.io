@@ -1,3 +1,6 @@
+var perspectiveX ,perspectiveY ,perspectiveZ;
+
+var _rotateX,_rotateY,_rotateZ;
 window.onload = function() {
 	var stage = document.querySelector("#stage"),
 		cube=document.querySelector("#cube");
@@ -9,9 +12,7 @@ window.onload = function() {
     //     rotateY = document.querySelector("#rotatey"),
     //     rotateZ = document.querySelector("#rotatez");
     var rotateY = document.querySelector("#rotatey");
-    var perspectiveX ,perspectiveY ,perspectiveZ;
-
-    var _rotateX,_rotateY,_rotateZ;
+    
     // X.onchange = function() {
     //     perspectiveX = this.value;
     //     setPerspective(perspectiveX, perspectiveY);
@@ -53,3 +54,20 @@ function setPerspective(x, y) {
 	x=x||0,y=y||0
     stage.style.webkitPerspectiveOrigin = x + "px " + y + "px"
 }
+
+if (window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", function(event) {
+        var rotateDegrees =event.alpha?event.alpha.toFixed(2):0;
+        // gamma: left to right
+        var leftToRight = event.gamma?event.gamma.toFixed(2):0;
+        // beta: front back motion
+        var frontToBack = event.beta?event.beta.toFixed(2):0;
+
+        handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+    }, true);
+}
+
+var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
+    _rotateY=-rotateDegrees;
+    setRotate(_rotateX,_rotateY,_rotateZ);
+};
