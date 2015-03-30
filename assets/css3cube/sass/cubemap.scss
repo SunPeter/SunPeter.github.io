@@ -14,9 +14,10 @@ body{
 	z-index:100;
 }
 #stage{
-	-webkit-perspective:100px;
-	-webkit-perspective-origin:center;
+	-webkit-perspective:120.3125px;
 	height:100%;
+	width:100%;
+	overflow: hidden;
 }
 #cube{
 	position: absolute;
@@ -26,6 +27,7 @@ body{
 	top:50%;
 	margin:-100px 0 0 -100px;
 	-webkit-transform-style:preserve-3d;
+	-webkit-transform:translateZ(120.3125px) rotateX(1deg) rotateY(223deg);
 	i{
 		position: absolute;
 		display: block;
@@ -36,43 +38,41 @@ body{
 		line-height: 200px;
 		font-size: 40px;
 		-webkit-transform-origin:center center 0;
-		
-		&:nth-child(1){
-			-webkit-transform: rotateY(180deg) translateZ(-100px);
-			background: url("../map/001.jpg") no-repeat;
+		&:nth-child(1){  //front
+			-webkit-transform:rotateY(0deg) translateZ(-100px);
+			background: url("../map/003.jpg") no-repeat;
 			background-size:cover;
 			// background: #F00;
 		}
-		&:nth-child(2){
-			-webkit-transform: rotateY(90deg) translateZ(-100px);
-			background: url("../map/002.jpg") no-repeat;
+		&:nth-child(2){  //right
+			-webkit-transform:rotateY(-90deg) translateZ(-100px);
+			background: url("../map/004.jpg") no-repeat;
+			background-size:cover;
+			// background: #F00;
+		}
+		&:nth-child(3){ //back
+			-webkit-transform:rotateY(-180deg) translateZ(-100px);
+			background: url("../map/001.jpg") no-repeat;
 			background-size:cover;
 			// background: #0F0;
 		}
-		&:nth-child(3){
-			-webkit-transform: rotateY(-90deg) translateZ(-100px);;
-			background: url("../map/004.jpg") no-repeat;
+		&:nth-child(4){ //left
+			-webkit-transform:rotateY(-270deg) translateZ(-100px);
+			background: url("../map/002.jpg") no-repeat;
 			background-size:cover;
 			// background:#00F;
 		}
-		&:nth-child(4){
+		&:nth-child(5){ //top 
 			// background: #FF0;
 			-webkit-transform:rotateX(-90deg) translateZ(-100px);
 			background: url("../map/005.jpg") no-repeat;
 			background-size:cover;
 		}
-		&:nth-child(5){
+		&:nth-child(6){ //bottom
 			-webkit-transform: rotateX(90deg) translateZ(-100px);
 			background: url("../map/006.jpg") no-repeat;
 			background-size:cover;
 			// background:#0FF;
-		}
-		&:nth-child(6){
-			-webkit-transform: rotateZ(0) translateZ(-100px);
-			background: url("../map/003.jpg") no-repeat;
-			background-size:cover;
-
-			// background: #F0F;
 		}
 	}
 }

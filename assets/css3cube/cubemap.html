@@ -14,7 +14,7 @@
 
 <body>
 	<div id="dashboard">
-		<label for="x">水平视角</label>
+		<!-- <label for="x">水平视角</label>
 		左<input type="range" id="x" min="-2000" max="2000">右
         <br>
 		<label for="y">垂直视角</label>
@@ -25,23 +25,24 @@
         <br>
         <label for="rotatex">rotatex</label>
         0<input type="range" id="rotatex" min="0" max="360">360deg
+        <br> -->
+        <label for="rotatex">视野</label>
+        左<input type="range" id="rotatey" min="0" max="360">右
         <br>
-        <label for="rotatex">rotatey</label>
-        0<input type="range" id="rotatey" min="0" max="360">360deg
-        <br>
-        <label for="rotatex">rotatez</label>
-        0<input type="range" id="rotatez" min="0" max="360">360deg
+        <!-- <label for="rotatex">rotatez</label>
+        0<input type="range" id="rotatez" min="0" max="360">360deg -->
 	</div>
     <div id="stage">
         <div id="cube">
-            <i></i>
-            <i></i>
-            <i></i>
-            <i></i>
-            <i></i>
-            <i></i>
+            <i class="layer"></i>
+            <i class="layer"></i>
+            <i class="layer"></i>
+            <i class="layer"></i>
+            <i class="layer"></i>
+            <i class="layer"></i>
         </div>
     </div>
 </body>
+<script src="js/parallax.min.js"></script>
 <script src="js/cube.js"></script>
 </html>

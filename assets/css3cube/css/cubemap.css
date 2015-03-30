@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 5, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,45 +24,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -82,12 +82,13 @@ body {
 
 /* line 16, ../sass/cubemap.scss */
 #stage {
-  -webkit-perspective: 100px;
-  -webkit-perspective-origin: center;
+  -webkit-perspective: 120.3125px;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
-/* line 21, ../sass/cubemap.scss */
+/* line 22, ../sass/cubemap.scss */
 #cube {
   position: absolute;
   width: 200px;
@@ -96,8 +97,9 @@ body {
   top: 50%;
   margin: -100px 0 0 -100px;
   -webkit-transform-style: preserve-3d;
+  -webkit-transform: translateZ(120.3125px) rotateX(1deg) rotateY(223deg);
 }
-/* line 29, ../sass/cubemap.scss */
+/* line 31, ../sass/cubemap.scss */
 #cube i {
   position: absolute;
   display: block;
@@ -109,39 +111,39 @@ body {
   font-size: 40px;
   -webkit-transform-origin: center center 0;
 }
-/* line 40, ../sass/cubemap.scss */
+/* line 41, ../sass/cubemap.scss */
 #cube i:nth-child(1) {
-  -webkit-transform: rotateY(180deg) translateZ(-100px);
-  background: url("../map/001.jpg") no-repeat;
+  -webkit-transform: rotateY(0deg) translateZ(-100px);
+  background: url("../map/003.jpg") no-repeat;
   background-size: cover;
 }
-/* line 46, ../sass/cubemap.scss */
+/* line 47, ../sass/cubemap.scss */
 #cube i:nth-child(2) {
-  -webkit-transform: rotateY(90deg) translateZ(-100px);
-  background: url("../map/002.jpg") no-repeat;
-  background-size: cover;
-}
-/* line 52, ../sass/cubemap.scss */
-#cube i:nth-child(3) {
   -webkit-transform: rotateY(-90deg) translateZ(-100px);
   background: url("../map/004.jpg") no-repeat;
   background-size: cover;
 }
-/* line 58, ../sass/cubemap.scss */
+/* line 53, ../sass/cubemap.scss */
+#cube i:nth-child(3) {
+  -webkit-transform: rotateY(-180deg) translateZ(-100px);
+  background: url("../map/001.jpg") no-repeat;
+  background-size: cover;
+}
+/* line 59, ../sass/cubemap.scss */
 #cube i:nth-child(4) {
+  -webkit-transform: rotateY(-270deg) translateZ(-100px);
+  background: url("../map/002.jpg") no-repeat;
+  background-size: cover;
+}
+/* line 65, ../sass/cubemap.scss */
+#cube i:nth-child(5) {
   -webkit-transform: rotateX(-90deg) translateZ(-100px);
   background: url("../map/005.jpg") no-repeat;
   background-size: cover;
 }
-/* line 64, ../sass/cubemap.scss */
-#cube i:nth-child(5) {
+/* line 71, ../sass/cubemap.scss */
+#cube i:nth-child(6) {
   -webkit-transform: rotateX(90deg) translateZ(-100px);
   background: url("../map/006.jpg") no-repeat;
-  background-size: cover;
-}
-/* line 70, ../sass/cubemap.scss */
-#cube i:nth-child(6) {
-  -webkit-transform: rotateZ(0) translateZ(-100px);
-  background: url("../map/003.jpg") no-repeat;
   background-size: cover;
 }
