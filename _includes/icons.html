@@ -22,6 +22,14 @@
 </li>
 {% endif %}
 
+{% if icons.codepen %}
+<li>
+    <a href="http://codepen.io/{{ icons.codepen }}/">
+        <i class="fa fa-fw fa-codepen"></i>
+    </a>
+</li>
+{% endif %}
+
 {% if icons.rss %}
 <li>
     <a href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">

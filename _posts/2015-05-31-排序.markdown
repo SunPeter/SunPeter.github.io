@@ -140,8 +140,9 @@ sort(function(a,b){
 })
 ```` 
   
-* 据说这个sort方法v8是使用的改良过的快排,相当快    
->v8's team is looking for stable sort, so that's why they use modified version of quick sort (neither quick sort nor heap sort are stable).
+* 据说这个sort方法v8是使用的改良过的快排,相当快  
+  
+> v8's team is looking for stable sort, so that's why they use modified version of quick sort (neither quick sort nor heap sort are stable).
 
 ###参考
 [数据结构与算法JavaScript描述](http://book.douban.com/subject/25945449/) 
