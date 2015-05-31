@@ -12,5 +12,4 @@ share: false
 
 一些小demo：  
 ___
-[模拟3d视角](/assets/css3cube/cubeMap.html)  
-
+[模拟3d视角](/assets/css3cube/cubemap.html)  
