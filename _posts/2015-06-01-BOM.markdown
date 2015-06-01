@@ -1,0 +1,128 @@
+---
+
+layout: post
+title:  "浏览器对象模型 BOM"  
+date:   2015-06-01 
+tags: js
+
+---
+  
+#结构  
+window    
+————history		
+————location		
+————navigator		
+————screen   
+————document		
+	
+<!--more-->
+	
+##screen 
+* 屏幕分辨率：`screen.width` `screen.height`
+* 屏幕宽高：`screnn.availWidth` `screen.availHeight`  
+
+##navigator
+* 浏览器名字：`navigator.appName`
+* 浏览器平台：`navigator.platform`
+* 浏览器平台和版本信息： `navigator.appVersion`
+* ua：`navigator.userAgent`
+
+##location
+URL(href)=协议(protocol)+主机(host=主机名(hostname)+端口(port))+路径(pathname)+?查询(search)+#哈希(hash)
+  
+##history  
+* 历史记录数：length
+* 后退 back()
+* 前进 forward()	
+* 加载历史列表的某一个：go(num|url) num:相对当前页的位置
+
+##document 
+###集合
+`all` `anchors` `forms` `images` `links` 
+###属性  
+`body` `domain` `lastModified` `referrer` `title` `URL`   
+
+* body
+	* ~~页面窗口宽高(包括边框,eg:滚动条):~~`document.body.offsetWidth` `document.offsetHeight` 
+	* 页面窗口宽高:`document.body.clientWidth` `document.clientHeight`
+	* 页面滚蛋宽高:`document.body.scrollLeft` `document.body.scrollTop`
+
+###方法()
+* close
+* getElementById......等选择器
+* open
+* write writeln
+
+---
+
+##页面元素
+###宽高
+* width+border+padding:`offsetWidth` `offsetHeight`
+* ~~width+padding~~:`clientWidth` `clientHeight`
+* 精确计算：`getBoundingClientRect`	
+
+###偏移量
+* offsetX:`getBoundingClientRect()+document.body.scrollLeft`
+* offsetY:`getBoundingClientRect()+document.body.scrollTop`
+
+###样式
+* classList
+	* add()
+	* remove()
+	* toggle
+	* contains()  
+
+###数据（data-）
+* dataset
+
+###属性
+* getAttribute
+* setAttribute
+* removeAttribute  
+
+###文本
+* 插入
+	* target.insertAdjacentHTML(method,text)		
+beforebegin { afterbegin target beforeend} afterend
+	* target.appendChild(node)  ==method:beforeend
+	* target.insertBefore(node,tagNode)
+
+* 删除
+	* target.removeChild(el)
+
+* 获取
+	* 内部可见文档：innerHTML
+	* 外部可见文档：outerHTML
+	* 内部字符串：innerText
+	* 内部字符串，包含隐藏的元素：textContent
+
+###复制
+浅复制：cloneNode() 只复制子一层结构
+深复制：cloneNode(true) 复制所有子结构  
+
+###兄弟和后代
+* nextElementSibling
+* previousElementSibling
+* firstElementChild
+* lastElementChild
+* children
+* parentElement
+
+##事件
+---
+* ready:
+
+````javascript
+function ready(fn) {	
+  if (document.readyState != 'loading'){	
+    fn();	
+  } else {	
+    document.addEventListener('DOMContentLoaded', fn);	
+  }	
+}
+````
+
+##说明
+---
+上述方法可以在高版本(IE9+)浏览器正常运行，如有补充，欢迎留言交流  
+[http://youmightnotneedjquery.com/](http://youmightnotneedjquery.com/)
