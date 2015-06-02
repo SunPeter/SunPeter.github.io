@@ -58,12 +58,15 @@ URL(href)=协议(protocol)+主机(host=主机名(hostname)+端口(port))+路径(
 ##页面元素
 ###宽高
 * width+border+padding:`offsetWidth` `offsetHeight`
-* ~~width+padding~~:`clientWidth` `clientHeight`
+* width+padding:`clientWidth` `clientHeight`
 * 精确计算：`getBoundingClientRect`	
+* 样式计算：`getComputedStyle(el)[keyname]` 譬如求el.width，无padding border,与jquery的width方法返回相同
 
 ###偏移量
 * offsetX:`getBoundingClientRect()+document.body.scrollLeft`
 * offsetY:`getBoundingClientRect()+document.body.scrollTop`
+* getBoundingClientRect为元素相对当前viewport的位置信息
+
 
 ###样式
 * classList
