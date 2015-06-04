@@ -1,0 +1,86 @@
+.load-item {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+#div1 .ball {
+    width: 0;
+    height: 0;
+    border-width: 20px;
+    border-color: red transparent red red;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+#div1 .ball:first-child {
+    -webkit-animation: rotate_pacman_half_up 0.5s 0s infinite;
+}
+
+#div1 .ball:last-child {
+    margin-top: -40px;
+    -webkit-animation: rotate_pacman_half_down 0.5s 0s infinite;
+}
+
+@-webkit-keyframes rotate_pacman_half_up {
+    0% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+    50% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+    100% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+}
+
+@-webkit-keyframes rotate_pacman_half_down {
+    0% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    50% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}
+
+#div1 .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: red;
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    margin-top: -5px;
+}
+
+#div1 .dot {
+    -webkit-animation: pacman-balls 1s infinite linear
+}
+
+#div1 .dot:last-child {
+    -webkit-animation-delay: 0.33s;
+    animation-delay: 0.33s;
+}
+
+@-webkit-keyframes pacman-balls {
+    75% {
+        opacity: 0.5;
+    }
+    100% {
+        -webkit-transform: translate(-100px, 0);
+        transform: translate(-100px, 0);
+    }
+}

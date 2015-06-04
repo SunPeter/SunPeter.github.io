@@ -1,9 +1,9 @@
 ---
-layout: page
-title: About
-permalink: /about/
-order: 1
-share: false
+layout: page   
+title: About  
+permalink: /about/   
+order: 1   
+share: false  
 ---
 
 正宗90后，微胖，早年间混迹篮球场，后上了年纪，遂改行桌球 
@@ -13,3 +13,5 @@ share: false
 一些小demo：  
 ___
 [模拟3d视角](/assets/css3cube/cubemap.html)  
+[material-ui](/assets/material-ui/material-ui.html)    
+[css实现loading图标](/assets/load-icon/load.html)

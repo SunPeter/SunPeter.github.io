@@ -1,0 +1,268 @@
+/* line 5, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 1, ../sass/_load1.scss */
+.load-item {
+  float: left;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* line 10, ../sass/_load1.scss */
+#div1 .ball {
+  width: 0;
+  height: 0;
+  border-width: 20px;
+  border-color: red transparent red red;
+  border-style: solid;
+  border-radius: 50%;
+}
+
+/* line 19, ../sass/_load1.scss */
+#div1 .ball:first-child {
+  -webkit-animation: rotate_pacman_half_up 0.5s 0s infinite;
+}
+
+/* line 23, ../sass/_load1.scss */
+#div1 .ball:last-child {
+  margin-top: -40px;
+  -webkit-animation: rotate_pacman_half_down 0.5s 0s infinite;
+}
+
+@-webkit-keyframes rotate_pacman_half_up {
+  0% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+  50% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+}
+@-webkit-keyframes rotate_pacman_half_down {
+  0% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+/* line 58, ../sass/_load1.scss */
+#div1 .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  margin-top: -5px;
+}
+
+/* line 69, ../sass/_load1.scss */
+#div1 .dot {
+  -webkit-animation: pacman-balls 1s infinite linear;
+}
+
+/* line 73, ../sass/_load1.scss */
+#div1 .dot:last-child {
+  -webkit-animation-delay: 0.33s;
+  animation-delay: 0.33s;
+}
+
+@-webkit-keyframes pacman-balls {
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: translate(-100px, 0);
+    transform: translate(-100px, 0);
+  }
+}
+/* line 3, ../sass/_load2.scss */
+#div2 > div {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+  -webkit-animation-name: ball-spin-fade-loader;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: both;
+}
+
+/* line 17, ../sass/_load2.scss */
+#div2 div:nth-child(1) {
+  top: 118.28427px;
+  left: 118.28427px;
+  -webkit-animation-delay: 0.14286s;
+}
+
+/* line 17, ../sass/_load2.scss */
+#div2 div:nth-child(2) {
+  top: 130px;
+  left: 90px;
+  -webkit-animation-delay: 0.28571s;
+}
+
+/* line 17, ../sass/_load2.scss */
+#div2 div:nth-child(3) {
+  top: 118.28427px;
+  left: 61.71573px;
+  -webkit-animation-delay: 0.42857s;
+}
+
+/* line 17, ../sass/_load2.scss */
+#div2 div:nth-child(4) {
+  top: 90px;
+  left: 50px;
+  -webkit-animation-delay: 0.57143s;
+}
+
+/* line 17, ../sass/_load2.scss */
+#div2 div:nth-child(5) {
+  top: 61.71573px;
+  left: 61.71573px;
+  -webkit-animation-delay: 0.71429s;
+}
+
+/* line 17, ../sass/_load2.scss */
+#div2 div:nth-child(6) {
+  top: 50px;
+  left: 90.0px;
+  -webkit-animation-delay: 0.85714s;
+}
+
+/* line 17, ../sass/_load2.scss */
+#div2 div:nth-child(7) {
+  top: 61.71573px;
+  left: 118.28427px;
+  -webkit-animation-delay: 1s;
+}
+
+/* line 17, ../sass/_load2.scss */
+#div2 div:nth-child(8) {
+  top: 90.0px;
+  left: 130px;
+  -webkit-animation-delay: 1.14286s;
+}
+
+@-webkit-keyframes ball-spin-fade-loader {
+  50% {
+    opacity: 0.3;
+    -webkit-transform: scale(0.4);
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+/* line 1, ../sass/_load3.scss */
+#div3 {
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 8, ../sass/_load3.scss */
+#div3 > div {
+  width: 20px;
+  height: 20px;
+  border: 2px solid red;
+  border-bottom-color: transparent;
+  border-radius: 100%;
+  -webkit-animation: rotate 0.75s 0s linear infinite;
+}
+/* line 15, ../sass/_load3.scss */
+#div3 > div:last-child {
+  border-top-color: transparent;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}

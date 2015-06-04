@@ -1,0 +1,27 @@
+#div3{
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+	width:100%;
+	height:100%;
+}
+#div3>div{
+	width:20px;
+	height:20px;
+	border:2px solid red;
+	border-bottom-color:transparent;
+	border-radius:100%;
+	-webkit-animation:rotate 0.75s 0s linear infinite;
+	&:last-child{
+		border-top-color:transparent;
+	}
+}
+
+@-webkit-keyframes rotate{
+	0%{
+		-webkit-transform: rotate(0);
+	}
+	100%{
+		-webkit-transform: rotate(360deg);
+	}
+}

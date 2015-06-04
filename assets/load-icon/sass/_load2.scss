@@ -1,0 +1,35 @@
+$num:8;
+$duration:1s;
+#div2>div {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    position: absolute;
+    -webkit-animation-name:ball-spin-fade-loader;
+	-webkit-animation-duration:$duration;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-fill-mode:both;
+}
+
+@for $i from 1 through $num {
+	$count:$num - 1;
+    #div2 div:nth-child(#{$i}){
+        top: 90+40*sin($i * pi()/ 4) +px;
+        left: 90+40*cos($i * pi()/ 4) +px;
+        -webkit-animation-delay:#{$i*$duration/$count};
+    }
+}
+
+@-webkit-keyframes ball-spin-fade-loader {
+    50% {
+        opacity: 0.3;
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
