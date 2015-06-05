@@ -17,15 +17,33 @@
         <div class="btn">
         </div>
     </div>
-	
-	<div class="paper" id="paper2">
+    <div class="paper" id="paper2">
         <div class="btn">
+        </div>
+    </div>
+    <div class="paper" id="paper3">
+        <div class="btn">
+            <div id="btn-group">
+                <button>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="paper" id="paper4">
+        <div class="btn">
+            
         </div>
     </div>
     <script type="text/javascript">
     window.onload = function() {
         paper1()
         paper2()
+        paper3()
     }
 
     function paper1() {
@@ -38,14 +56,14 @@
             var node = document.createElement("div")
             node.classList.add("wave")
 
-            node.style.left= e.clientX - (pos.left + pos.right) / 2 + "px",
+            node.style.left = e.clientX - (pos.left + pos.right) / 2 + "px",
                 node.style.top = e.clientY - (pos.top + pos.bottom) / 2 + "px"
 
             btn.appendChild(node)
 
-            setTimeout(function(){
-            	node.remove()
-            }.bind(this),1000)
+            setTimeout(function() {
+                node.remove()
+            }.bind(this), 1000)
 
         })
 
@@ -61,14 +79,36 @@
             var node = document.createElement("div")
             node.classList.add("wave")
 
-            node.style.left= e.clientX - (pos.left + pos.right) / 2 + "px",
+            node.style.left = e.clientX - (pos.left + pos.right) / 2 + "px",
                 node.style.top = e.clientY - (pos.top + pos.bottom) / 2 + "px"
 
             btn.appendChild(node)
 
-            setTimeout(function(){
-            	node.remove()
-            }.bind(this),1000)
+            setTimeout(function() {
+                node.remove()
+            }.bind(this), 1000)
+
+        })
+    }
+
+    function paper3() {
+        var btn = document.querySelector('#paper3 .btn');
+            button=document.querySelector("#btn-group")
+            pos = button.getBoundingClientRect();
+
+
+        btn.addEventListener("click", function(e) {
+
+            var node = document.createElement("div")
+            node.classList.add("wave")
+
+
+
+            btn.insertBefore(node,button)
+
+            setTimeout(function() {
+                node.remove()
+            }.bind(this), 1000)
 
         })
     }

@@ -116,13 +116,40 @@ beforebegin { afterbegin target beforeend} afterend
 * ready:
 
 ````javascript
-function ready(fn) {	
-  if (document.readyState != 'loading'){	
-    fn();	
-  } else {	
-    document.addEventListener('DOMContentLoaded', fn);	
-  }	
-}
+function ready(fn) {		
+  if (document.readyState != 'loading'){		
+    fn();		
+  } else {		
+    document.addEventListener('DOMContentLoaded', fn);		
+  }		
+}	
+````
+
+* get:
+
+````javascript    
+var request = new XMLHttpRequest();
+request.open('GET', '/my/url', true);
+request.onreadystatechange = function() {
+  if (this.readyState === 4) {
+    if (this.status >= 200 && this.status < 400) {
+      var data = JSON.parse(this.responseText);
+    } else {
+      
+    }
+  }
+};
+request.send();
+request = null;
+````
+
+* post:  
+
+````javascript
+var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+request.send(data);  
 ````
 
 ##说明
