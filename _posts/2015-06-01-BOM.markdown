@@ -155,4 +155,5 @@ request.send(data);
 ##说明
 ---
 上述方法可以在高版本(IE9+)浏览器正常运行，如有补充，欢迎留言交流  
-[http://youmightnotneedjquery.com/](http://youmightnotneedjquery.com/)
+[http://youmightnotneedjquery.com/](http://youmightnotneedjquery.com/)   
+[pageX,clientX,offsetX,layerX的区别](http://m.shanmao.me/index.php?s=/Index/acticle/tid/1702)

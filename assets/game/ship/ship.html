@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="keywords" content="game,html5,canvas">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css" media="all"/>
+</head>
+<body >
+   
+	<div id = "srcImg" >
+		<img src="img/ground.jpg" id = "groundImg"/>
+		<img src="img/fire.png" id = "fireImg"/>
+		<img src="img/player.png" id = "playerImg"/>
+		<img src="img/enemy1.png" id = "enemy1Img"/>
+		<img src="img/enemy2.png" id = "enemy2Img"/>
+		<img src="img/enemy3.png" id = "enemy3Img"/>
+		<img src="img/bullet.png" id = "bulletImg"/>
+	</div>
+	<div id="game">
+		<canvas id="ground" width="500" height="500" style = "top :5px"></canvas>
+		<canvas id="main" width="500" height="500" style = "top :5px"></canvas> 
+	</div>
+    <script type="text/javascript" src = "scripts/Const.js"></script>
+    <script type="text/javascript" src = "scripts/Vector.js"></script>
+	<script type="text/javascript" src = "scripts/Ground.js"></script>
+    <script type="text/javascript" src = "scripts/Bullet.js"></script>
+    <script type="text/javascript" src = "scripts/Enemy.js"></script>
+    <script type="text/javascript" src = "scripts/Player.js"></script>
+	<script type="text/javascript">
+        var key=[],frameNum= 0,enemys=[],bullets=[]
+        window.onload=function(){
+            document.addEventListener("keydown",function(e){
+                e.preventDefault();
+                key= e.keyCode
+//                console.log(key)
+            })
+            document.addEventListener("keyup",function(e){
+                e.preventDefault();
+                key= undefined
+            });
+            (function draw(){
+                requestAnimationFrame(draw)
+                ground.draw()
+                if(enemys.length>0){
+                    enemys.forEach(function(enemy,index){
+                        if(enemy.isDie){
+                            enemys.splice(index,1)
+                        }
+                        enemy.draw()
+                        enemy.update()
+                    })
+                }
+                player.draw()
+                player.update()
+                frameNum+=1
+                if(frameNum==100){
+                    var enemy=new Enemy(tool.random(100,width-100),tool.random(100,100));
+                    enemys.push(enemy)
+                    frameNum=0
+                }
+
+            })()
+        }
+
+	</script>
+     <h1 style="padding-top:500px;">此为canvas游戏学习所用 目的是比较和学习思路 clone 06wj的github仓库,在原有代码上进行了修改 如有意见或建议请及时告知本人 </h1>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

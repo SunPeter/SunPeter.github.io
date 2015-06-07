@@ -14,4 +14,5 @@ share: false
 ___
 [模拟3d视角](/assets/css3cube/cubemap.html)  
 [material-ui](/assets/material-ui/material-ui.html)    
-[css实现loading图标](/assets/load-icon/load.html)
+[css实现loading图标](/assets/load-icon/load.html)    
+[飞机大战06wj版本学习修改](/assets/game/ship/ship.html)
