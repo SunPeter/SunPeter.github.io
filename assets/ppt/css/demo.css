@@ -1,0 +1,16 @@
+.file-setting{
+    color: yellow;
+}
+#incallback,#outcallback{
+    margin-top:10px;
+    background-color: rgba(0,0,0,.5);
+}
+iframe{
+  height: 200px !important;
+  width: 200px !important;
+  overflow: hidden;
+}
+.top-iframe{
+  height: 400px !important;
+  width: 400px !important;
+}
