@@ -14,3 +14,7 @@ iframe{
   height: 400px !important;
   width: 400px !important;
 }
+.full-iframe{
+  height: 600px !important;
+  width: 800px !important;
+}
