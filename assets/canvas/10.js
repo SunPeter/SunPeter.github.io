@@ -9,9 +9,9 @@ seajs.use(["common", "engin"], function(common, engin) {
     var balls = [];
     var sun = new Ball(width/2,height/2,50);
     sun.mass = 10000;
-    var earth = new Ball(5,height/2,5);
+    var earth = new Ball(110,height/2,5);
     earth.mass = 1;
-    earth.vy = 10;
+    earth.vy = 8;
     balls.push(sun);
     balls.push(earth);
 
