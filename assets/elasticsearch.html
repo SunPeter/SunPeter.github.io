@@ -1,233 +1,479 @@
-<!doctype html>
-<html lang='en'>
+<!DOCTYPE html><html>
+
 <head>
-<meta charset='utf-8'>
-<title>elasticsearch</title><link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css'><style type='text/css'>html, body {overflow-x: initial !important;}html { font-size: 14px; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.42857143; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); overflow-x: hidden; }
-a:active, a:hover { outline: 0px; }
-::selection { background-color: rgb(181, 214, 252); text-shadow: none; background-position: initial initial; background-repeat: initial initial; }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: pre-wrap; text-align: justify; padding-bottom: 70px; }
-body.typora-export { padding-left: 30px; padding-right: 30px; }
-.typora-export #write { margin: 0px auto; }
-#write > p:first-child, #write > ul:first-child, #write > pre:first-child, #write > blockquote:first-child, #write > div:first-child { margin-top: 30px; }
-img { max-width: 100%; }
-input, button, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; }
-input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
-::before, ::after, * { box-sizing: border-box; }
-#write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write div, #write pre { width: inherit; }
-#write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6 { position: relative; }
-h1 { font-size: 2rem; }
-p, .mathjax-block { display: block; -webkit-margin-before: 1rem; -webkit-margin-after: 1rem; -webkit-margin-start: 0px; -webkit-margin-end: 0px; }
-.hidden { display: none; }
-.md-blockmeta { color: rgb(204, 204, 204); font-weight: bold; font-style: italic; }
-a { cursor: pointer; }
-#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; margin: 4px 0px 0px; }
-tr { page-break-inside: avoid; page-break-after: auto; }
-thead { display: table-header-group; }
-table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; page-break-inside: auto; }
-table.md-table td { min-width: 80px; }
-.CodeMirror-placeholder { opacity: 0.3; }
-.CodeMirror-code pre { padding: 0px; }
-.CodeMirror-lines { padding: 0px; }
-div.hr:focus { cursor: none; }
-.md-fences, pre.md-fences { font-size: 0.9rem; display: block; page-break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
-.md-fences .CodeMirror.cm-s-default.CodeMirror-wrap { top: -1.6em; margin-bottom: -1.6em; }
-.md-fences.mock-cm { white-space: pre-wrap; }
-.footnotes { color: rgb(136, 136, 136); font-size: 0.9rem; padding-top: 1em; padding-bottom: 1em; }
-.footnotes + .footnotes { margin-top: -1em; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent; text-decoration: none; color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1rem; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: normal; text-align: left; box-sizing: content-box; direction: ltr; background-position: initial initial; background-repeat: initial initial; }
-li div { padding-top: 0px; }
-blockquote { margin: 1rem 0px; }
-li p, li .mathjax-block { margin: 0.5rem 0px; }
-li { margin: 0px; position: relative; }
-blockquote > :last-child { margin-bottom: 0px; }
-blockquote > :first-child { margin-top: 0px; }
-.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; }
-@media print { 
-  html, body { height: 100%; }
-  .typora-export * { -webkit-print-color-adjust: exact; }
-}
-.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
-a img, img a { cursor: pointer; }
-#write pre.md-meta-block { font-size: 0.8rem; min-height: 2.86rem; white-space: pre; background-color: rgb(204, 204, 204); display: block; background-position: initial initial; background-repeat: initial initial; }
-p > .md-image:only-child { display: inline-block; width: 100%; text-align: center; }
-#write .MathJax_Display { margin: 0.8em 0px 0px; }
-.mathjax-block { white-space: pre; padding-bottom: 0.65rem; overflow: hidden; width: 100%; }
-p + .mathjax-block { margin-top: -1.143rem; }
-.mathjax-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: none; box-shadow: none; }
-:focus { outline: none; box-shadow: rgb(79, 172, 249) 0px 0px 2px 3px, rgb(120, 174, 218) 0px 0px 2px inset; }
-.task-list { list-style-type: none; }
-.task-list-item { position: relative; padding-left: 1em; }
-.task-list-item input { position: absolute; top: 0px; left: 0px; }
-.math { font-size: 1rem; }
-.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
-.md-toc-content { position: relative; margin-left: 0px; }
-.md-toc::after, .md-toc-content::after { display: none; }
-.md-toc-item { display: block; color: rgb(65, 131, 196); text-decoration: none; }
-.md-toc-inner:hover { text-decoration: underline; }
-.md-toc-inner { display: inline-block; cursor: pointer; }
-.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: bold; }
-.md-toc-h2 .md-toc-inner { margin-left: 2em; }
-.md-toc-h3 .md-toc-inner { margin-left: 4em; }
-.md-toc-h4 .md-toc-inner { margin-left: 6em; }
-.md-toc-h5 .md-toc-inner { margin-left: 8em; }
-.md-toc-h6 .md-toc-inner { margin-left: 10em; }
-.md-toc-h6 { margin-left: 12em; }
-@media screen and (max-width: 48em) { 
-  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
-  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
-  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
-  .md-toc-h5 .md-toc-inner { margin-left: 8em; }
-  .md-toc-h6 { margin-left: 9.5em; }
-}
-a.md-toc-inner { color: inherit; font-size: inherit; font-style: inherit; font-weight: inherit; text-decoration: inherit; line-height: inherit; }
-.footnote-line a:not(.reversefootnote) { color: inherit; }
-.md-attr { display: none; }
-.md-fn-count::after { content: '.'; }
-.md-tag { opacity: 0.5; }
-h1 .md-tag, h2 .md-tag, h3 .md-tag, h4 .md-tag, h5 .md-tag, h6 .md-tag { font-weight: initial; opacity: 0.35; }
-a.md-header-anchor.md-print-anchor { border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: none !important; background-color: transparent !important; text-shadow: initial !important; background-position: initial initial !important; background-repeat: initial initial !important; }
+<meta charset="utf-8">
+<title>elasticsearch</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
 
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
 
-@font-face { font-family: 'Open Sans'; font-style: normal; font-weight: normal; src: local(Open Sans Regular), url(file:///Users/peter/Library/Application%20Support/abnerworks.Typora/themes/github/400.woff) format(woff); }
-@font-face { font-family: 'Open Sans'; font-style: italic; font-weight: normal; src: local(Open Sans Italic), url(file:///Users/peter/Library/Application%20Support/abnerworks.Typora/themes/github/400i.woff) format(woff); }
-@font-face { font-family: 'Open Sans'; font-style: normal; font-weight: bold; src: local(Open Sans Bold), url(file:///Users/peter/Library/Application%20Support/abnerworks.Typora/themes/github/700.woff) format(woff); }
-@font-face { font-family: 'Open Sans'; font-style: italic; font-weight: bold; src: local(Open Sans Bold Italic), url(file:///Users/peter/Library/Application%20Support/abnerworks.Typora/themes/github/700i.woff) format(woff); }
-html { font-size: 16px; }
-body { font-family: 'Open Sans', 'Clear Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-#write { max-width: 800px; margin: 0px auto; padding: 20px 30px 40px; }
-#write::after { height: 80px; }
-#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
-body > :first-child { margin-top: 0px !important; }
-body > :last-child { margin-bottom: 0px !important; }
-a { color: rgb(65, 131, 196); }
-h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; -webkit-font-smoothing: antialiased; cursor: text; }
-h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
-h1 tt, h1 code { font-size: inherit; }
-h2 tt, h2 code { font-size: inherit; }
-h3 tt, h3 code { font-size: inherit; }
-h4 tt, h4 code { font-size: inherit; }
-h5 tt, h5 code { font-size: inherit; }
-h6 tt, h6 code { font-size: inherit; }
-h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
-h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
-h3 { font-size: 1.5em; line-height: 1.43; }
-h4 { font-size: 1.25em; }
-h5 { font-size: 1em; }
-h6 { font-size: 1em; color: rgb(119, 119, 119); }
-p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
-hr { height: 4px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border-width: 0px 0px 1px; border-style: none none solid; overflow: hidden; box-sizing: content-box; border-bottom-color: rgb(221, 221, 221); }
-body > h2:first-child { margin-top: 0px; padding-top: 0px; }
-body > h1:first-child { margin-top: 0px; padding-top: 0px; }
-body > h1:first-child + h2 { margin-top: 0px; padding-top: 0px; }
-body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child { margin-top: 0px; padding-top: 0px; }
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 { margin-top: 0px; padding-top: 0px; }
-h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0px; }
-li p.first { display: inline-block; }
-ul, ol { padding-left: 30px; }
-ul:first-child, ol:first-child { margin-top: 0px; }
-ul:last-child, ol:last-child { margin-bottom: 0px; }
-blockquote { border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); padding: 0px 15px; color: rgb(119, 119, 119); }
-blockquote blockquote { padding-right: 0px; }
-table { padding: 0px; }
-table tr { border-top-width: 1px; border-top-style: solid; border-top-color: rgb(204, 204, 204); background-color: white; margin: 0px; padding: 0px; }
-table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
-table tr th { font-weight: bold; border: 1px solid rgb(204, 204, 204); text-align: left; margin: 0px; padding: 6px 13px; }
-table tr td { border: 1px solid rgb(204, 204, 204); text-align: left; margin: 0px; padding: 6px 13px; }
-table tr th:first-child, table tr td:first-child { margin-top: 0px; }
-table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
-pre.md-fences, .md-fences, code, tt { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; font-family: Consolas, 'Liberation Mono', Courier, monospace; padding: 2px 4px 0px; font-size: 0.9em; }
-pre.md-fences, .md-fences { margin-bottom: 15px; margin-top: 15px; padding: 8px 1em 6px; }
-.task-list { padding-left: 0px; }
-.task-list-item { padding-left: 32px; }
-.task-list-item input { top: 4px; left: 8px; }
-@media screen and (min-width: 914px) { 
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
 }
-@media print { 
-  table, pre { page-break-inside: avoid; }
-  pre { word-wrap: break-word; }
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
 }
-.md-fences { background-color: rgb(248, 248, 248); }
-#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
-.mathjax-block > .code-tooltip { bottom: 0.375rem; }
-#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
-#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714286rem; }
-#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714286rem; }
-#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714286rem; }
-.md-image > .md-meta { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; font-family: Consolas, 'Liberation Mono', Courier, monospace; padding: 2px 4px 0px; font-size: 0.9em; color: inherit; }
-.md-tag { color: inherit; }
-.md-toc { margin-top: 20px; padding-bottom: 20px; }
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
 
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
 
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
 </style>
 </head>
-<body class='typora-export' >
-<div  id='write' class = 'is-mac'><h2><a name='header-c1' class='md-header-anchor '></a>概念</h2><ul><li>索引(indices) - 数据库（database）</li><li>类型(types) - 表（table）</li><li>文档(Documents) - 每一条记录 (row)</li><li>字段(Fields) - 每一个字段 (column)</li><li>查询语法-DSL(Domain Specific Language特定领域语言) 以JSON请求体的形式出现</li></ul><h2><a name='header-c17' class='md-header-anchor '></a>数据</h2><blockquote><p>文档：最顶层结构或者根对象(root object)序列化成的JSON数据（以唯一ID标识并存储于Elasticsearch中）</p></blockquote><p>文档除了包含数据,还带有文档自身信息的元数据:</p><table><thead><tr><th>节点</th><th>说明</th></tr></thead><tbody><tr><td>_index</td><td>文档存储的地方</td></tr><tr><td>_type</td><td>文档代表的对象的类</td></tr><tr><td>_id</td><td>文档的唯一标识    </td></tr></tbody></table><p>譬如下面就是一个文档:</p><pre class='md-fences mock-cm' style='display:block;position:relative'>{
-	_index: &quot;cargo-2016.01.06&quot;,
-	_type: &quot;buildlog&quot;,
-	_id: &quot;AVIVKa6Mxf2nR9R5d3KN&quot;,
-	_score: 1,
-	_source: {
-		status: &quot;building&quot;,
-		uuid: &quot;1d8c09b9-bbc0-4e1a-82cf-3ef16cb761f9&quot;,
-		timestamp: &quot;2016-01-06T04:19:59.243225Z&quot;,
-		ip: &quot;&quot;,
-		message: &quot;generate_dockerfile&quot;,
-		type: &quot;generate_dockerfile&quot;
-	}
-}</pre><h4><a name='header-c36' class='md-header-anchor '></a>创建文档</h4><ul><li>id指定：<code>PUT /{index}/{type}/{id}</code></li><li>id指定,index/type/id 都不存在 确保创建新文档：<code>PUT /{index}/{type}/{id}?op_type=create</code> 或 <code>PUT /{index}/{type}/{id}/_create</code></li><li>id自增: <code>POST /{index}/{type}</code></li></ul><h4><a name='header-c44' class='md-header-anchor '></a>检索文档</h4><ul><li><p>获取文档全部: </p><pre class='md-fences mock-cm' style='display:block;position:relative'>* `GET /{index}/{type}/{id}`
-* `GET /{index}/{type}/{id}?pretty` 输出格式美化</pre></li><li><p>获取部分文档:</p><pre class='md-fences mock-cm' style='display:block;position:relative'>* `GET /{index}/{type}/{id}/_source` 只获取source
-* `GET /{index}/{type}/{id}/_source={field}` 只获取source中字段field</pre></li></ul><p>	</p><h4><a name='header-c53' class='md-header-anchor '></a>文档是否存在</h4><pre class='md-fences mock-cm' style='display:block;position:relative'>HEAD /{index}/{type}/{id}</pre><h4><a name='header-c55' class='md-header-anchor '></a>更新文档</h4><ul><li><code>PUT /{index}/{type}/{id}</code> 响应中_version会+1, created表示也会返回false</li><li><code>PUT /{index}/{type}/{id}/_update</code></li><li>脚本</li></ul><pre class='md-fences mock-cm' style='display:block;position:relative'>	PUT /{index}/{type}/{id}/_update
-	{
-	   &quot;script&quot; : &quot;ctx._source.tags+=new_tag&quot;,
-	   &quot;params&quot; : {
-	      &quot;new_tag&quot; : &quot;search&quot;
-	   }
-	} </pre><p>	</p><h4><a name='header-c65' class='md-header-anchor '></a>版本控制</h4><p>倘若有多个请求在同事更新一个文档时,就会有版本控制的问题	</p><p>悲观并发控制：读取数据时锁定,拒绝其他请求读取该数据	</p><p>乐观并发控制：如果在读写过程中数据发生了变化，更新操作将失败。这时候由程序决定在失败后如何解决冲突  </p><p>es采用的是乐观并发控制,读写失败时将错误返回	</p><p>	</p><ul><li>通过自身版本判断: <code>PUT /{index}/{type}/{id}?version=1 &lt;1&gt;</code> _version是1时才能修改数据	</li><li>通过外部版本判断: <code>PUT /{index}/{type}/{id}?version=5&amp;version_type=external</code>不再检查<em>version是否与请求中指定的一致，而是检查是否小于指定的版本。如果请求成功，外部版本号就会被存储到</em>version中</li></ul><h4><a name='header-c76' class='md-header-anchor '></a>检索多个文档</h4><ul><li><p>不同文档:		</p><pre class='md-fences mock-cm' style='display:block;position:relative'>`GET /_mget`</pre><p>	</p><pre class='md-fences mock-cm' style='display:block;position:relative'>	{
-	   &quot;docs&quot; : [
-	      {
-	         &quot;_index&quot; :   &quot;website&quot;,
-	         &quot;_id&quot; :      &quot;2&quot;,
-	         &quot;_type&quot; :    &quot;blog&quot;,
-	         &quot;found&quot; :    true,
-	         &quot;_source&quot; : {
-	            &quot;text&quot; :  &quot;This is a piece of cake...&quot;,
-	            &quot;title&quot; : &quot;My first external blog entry&quot;
-	         },
-	         &quot;_version&quot; : 10
-	      },
-	      {
-	         &quot;_index&quot; :   &quot;website&quot;,
-	         &quot;_id&quot; :      &quot;1&quot;,
-	         &quot;_type&quot; :    &quot;pageviews&quot;,
-	         &quot;found&quot; :    true,
-	         &quot;_version&quot; : 2,
-	         &quot;_source&quot; : {
-	            &quot;views&quot; : 2
-	         }
-	      }
-	   ]
-	}</pre></li><li><p>相同index:</p><p><code>GET /{index}/{type}/_mget</code>		</p><pre class='md-fences mock-cm' style='display:block;position:relative'>	
-	{
-	   &quot;docs&quot; : [
-	      { &quot;_id&quot; : 2 },
-	      { &quot;_type&quot; : &quot;pageviews&quot;, &quot;_id&quot; :   1 }
-	   ]
-	}</pre></li><li><p>相同index,type		</p><p><code>GET /{index}/{type}/_mget</code></p></li></ul><pre class='md-fences mock-cm' style='display:block;position:relative'>	{
-	   &quot;ids&quot; : [ &quot;2&quot;, &quot;1&quot; ]
-	}	</pre><h4><a name='header-c91' class='md-header-anchor '></a>批量处理</h4><p><code>POST /_bulk</code></p><p>	</p><pre class='md-fences mock-cm' style='display:block;position:relative'>	{ &quot;delete&quot;: { &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot; }} &lt;1&gt;
-	{ &quot;create&quot;: { &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot; }}
-	{ &quot;title&quot;:    &quot;My first blog post&quot; }
-	{ &quot;index&quot;:  { &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot; }}
-	{ &quot;title&quot;:    &quot;My second blog post&quot; }
-	{ &quot;update&quot;: { &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot;, &quot;_retry_on_conflict&quot; : 3} }
-	{ &quot;doc&quot; : {&quot;title&quot; : &quot;My updated blog post&quot;} } &lt;2&gt;
-	</pre><h3><a name='header-c95' class='md-header-anchor '></a>分布式集群</h3><ul><li>_cluster/health  查看es健康状态  :主分片(primary shards) 复制分片(replica shards)</li><li>{index}   查看index集群配置</li><li>_cat/health?v</li></ul><h2><a name='header-c103' class='md-header-anchor '></a>搜索</h2><h4><a name='header-c104' class='md-header-anchor '></a>普通搜索</h4><p>搜索全部:	</p><p><code>get {index}/{type}/_search</code></p><p>搜索指定内容:	</p><p><code>get {index}/{type}/_search?q=status:success</code>或者</p><pre class='md-fences mock-cm' style='display:block;position:relative'>&quot;query&quot;: {
+<body>
+<h2 id="toc_0">概念</h2>
+
+<ul>
+<li>索引(indices) - 数据库（database）</li>
+<li>类型(types) - 表（table）</li>
+<li>文档(Documents) - 每一条记录 (row)</li>
+<li>字段(Fields) - 每一个字段 (column)</li>
+<li>查询语法-DSL(Domain Specific Language特定领域语言) 以JSON请求体的形式出现</li>
+</ul>
+
+<h2 id="toc_1">简单操作</h2>
+
+<h3 id="toc_2">搜索</h3>
+
+<h4 id="toc_3">普通搜索</h4>
+
+<p>搜索全部:<br>
+<code>get :index/:type/_search</code></p>
+
+<p>搜索指定内容: 
+<code>get :index/:type/_search?q=status:success</code>或者</p>
+
+<pre><code class="language-none">&quot;query&quot;: {
   &quot;match&quot;: {
       &quot;status&quot;: &quot;success&quot;
   }
-}</pre><p>条件过滤:</p><pre class='md-fences mock-cm' style='display:block;position:relative'>&quot;query&quot;: {
+}</code></pre>
+
+<p>条件过滤:</p>
+
+<pre><code class="language-none">&quot;query&quot;: {
   &quot;filtered&quot;: {
       &quot;filter&quot;: {
           &quot;range&quot;: {
@@ -235,21 +481,40 @@ pre.md-fences, .md-fences { margin-bottom: 15px; margin-top: 15px; padding: 8px 
           }
       }
   }
-}</pre><p>排序:	</p><p><code>&quot;sort&quot;: [{&quot;timestamp&quot;: &quot;asc&quot;}]</code></p><p>短语匹配:	</p><pre class='md-fences mock-cm' style='display:block;position:relative'>&quot;query&quot;: {
+}</code></pre>
+
+<p>排序: 
+<code>&quot;sort&quot;: [{&quot;timestamp&quot;: &quot;asc&quot;}]</code></p>
+
+<p>短语匹配:   </p>
+
+<pre><code class="language-none">&quot;query&quot;: {
   &quot;match_phrase&quot;: {
       &quot;status&quot;: &quot;success&quot;
   }
-}</pre><p>关键字高亮:		</p><pre class='md-fences mock-cm' style='display:block;position:relative'>&quot;highlight&quot;: {
+}</code></pre>
+
+<p>关键字高亮:      </p>
+
+<pre><code class="language-none">&quot;highlight&quot;: {
   &quot;fields&quot; : {
       &quot;message&quot; : {}
   }
-}</pre><p>分页: size,from</p><p>聚合:	</p><pre class='md-fences mock-cm' style='display:block;position:relative'>&quot;aggs&quot;: {
+}</code></pre>
+
+<p>聚合: </p>
+
+<pre><code class="language-none">&quot;aggs&quot;: {
   &quot;aggregation_A&quot;: {
       &quot;terms&quot;: {
           &quot;field&quot;: &quot;status&quot;
       }
   }
-}</pre><p>分级集合: 	譬如下面例子 每种兴趣下的平均年龄</p><p>	</p><pre class='md-fences mock-cm' style='display:block;position:relative'>&quot;aggs&quot;: {
+}</code></pre>
+
+<p>分级集合:   譬如下面例子 每种兴趣下的平均年龄</p>
+
+<pre><code class="language-none">&quot;aggs&quot;: {
   &quot;aggregation_A&quot;: {
       &quot;terms&quot;: {
           &quot;field&quot;: &quot;interest&quot;
@@ -260,34 +525,93 @@ pre.md-fences, .md-fences { margin-bottom: 15px; margin-top: 15px; padding: 8px 
           }
       }
   }
-}</pre><h3><a name='header-c124' class='md-header-anchor '></a>索引操作</h3><ul><li>查看全部索引: <code>GET _cat/indices</code></li><li>查看某个索引: `GET /{index} 可以看到index相关设置信息</li></ul><pre class='md-fences mock-cm' style='display:block;position:relative'>	index: {
-		creation_date: &quot;1452053657718&quot;,
-		uuid: &quot;TQa8H5wkS1qYhTXeEjFObg&quot;,
-		number_of_replicas: &quot;1&quot;,
-		number_of_shards: &quot;5&quot;,
-		version: {
-		created: &quot;2010199&quot;
-		}
-	}</pre><p>number_of_replicas 表示备份数量		</p><p>number_of_shards 表示分片数量</p><pre class='md-fences mock-cm' style='display:block;position:relative'>	</pre><h2><a name='header-c134' class='md-header-anchor '></a>映射</h2><p>查看字段映射:</p><p><code>GET /{index}/_mapping/{type}</code></p><pre class='md-fences mock-cm' style='display:block;position:relative'>mappings: {
-	buildlog: {
-		properties: {
-			message: {
-				type: &quot;string&quot;
-			},
-			timestamp: {
-				type: &quot;date&quot;,
-				format: &quot;strict_date_optional_time||epoch_millis&quot;
-			}
-		}
-	}
-}</pre><p>注意: 当创建index的时候数据类型就会根据传入的数据确定,且之后不能修改</p><p>设置字段类型:</p><p><code>PUT /{index}/_mapping/{type}</code></p><pre class='md-fences mock-cm' style='display:block;position:relative'>mappings: {
-	buildlog: {
-		properties: {
-			message: {
-				type: &quot;string&quot;
-			}
-		}
-	}
-}</pre><h2><a name='header-c142' class='md-header-anchor '></a>插件</h2><ul><li><a href='https://mobz.github.io/elasticsearch-head/' target='_blank' >https://mobz.github.io/elasticsearch-head/</a></li></ul><h2><a name='header-c146' class='md-header-anchor '></a>守护进程</h2><h4><a name='header-c147' class='md-header-anchor '></a><a href='https://cr.yp.to/daemontools/install.html'   >daemontools之supervise</a></h4><blockquote><p>supervise - starts and monitors a service.</p></blockquote><ul><li><code>wget http://cr.yp.to/daemontools/daemontools-0.76.tar.gz</code></li><li><code>tar -zxvf daemontools-0.76.tar.gz</code></li><li><code>cd admin/daemontools-0.76</code></li><li><code>vi src/conf-cc</code> 在<strong>第一行</strong>末尾加上 <code>-include /usr/include/errno.h</code> 避免安装失败</li><li><code>package/install</code>			</li><li><code>ln -s /etc/serivice /service</code></li><li><code>mkdir /services/somerandomservice</code></li><li><code>echo -e &#39;#!/bin/sh\nexec somerandomcommand&#39; &gt; /services/somerandomservice/run</code></li><li><code>chmod 755 /services/somerandomservice/run</code></li></ul><p>supervise开机任务在<code>/etc/init/svscan.conf</code>中定义了,运行<code>/usr/bin/svscanboot</code>  </p><p>supervise的执行命令是supervise Path ，其中Path 是指定路径，可以是相对路径，也可以是绝对路径。在Path路径下，必须有一个run的脚本，supervise调用的就是这个脚本，并监控管理该脚本中运行的程序。run里一定</p><p>supervise的一个重要的功能就是可以检测出run脚本中执行的程序是否正常工作，若发现其已经死掉，supervise将会重新执行run脚本，重新启动指定程序。</p><h3><a name='header-c172' class='md-header-anchor '></a>参考资料</h3><p><a href='https://isotope11.com/blog/manage-your-services-with-daemontools'   >manage-your-services-with-daemontools</a> 	</p><p><a href='http://wiki.sankuai.com/display/~zhouzhibin/daemontools'   >daemontools</a></p></div>
-<div style='display:none;'>undefined</div></body>
+}</code></pre>
+
+<h3 id="toc_4">分布式集群</h3>
+
+<ul>
+<li>_cluster/health  查看es健康状态  :主分片(primary shards) 复制分片(replica shards)</li>
+<li>:index   查看index集群配置</li>
+<li>_cat/health?v</li>
+</ul>
+
+<h3 id="toc_5">索引操作</h3>
+
+<ul>
+<li>put  创建索引:    /:index</li>
+<li>get 查看索引： _cat/indices</li>
+<li>delete 删除索引:  /:index</li>
+</ul>
+
+<h3 id="toc_6">文档操作</h3>
+
+<ul>
+<li><p>更新:<code>_version</code>会+1</p>
+
+<ul>
+<li>全局更新:  以创建的形式（指定id）<br></li>
+<li>局部更新:  post    /:index/:type/:id/_update   &quot;doc&quot;: {    &quot;name&quot;: &quot;ssd&quot;    }}</li>
+</ul></li>
+<li><p>检索多个文档 </p></li>
+<li><pre><code class="language-none">&quot;docs&quot;: [
+  {
+      &quot;_index&quot;: &quot;cargo-2016.01.06&quot;,
+      &quot;_type&quot;: &quot;buildlog&quot;,
+      &quot;_id&quot;: &quot;AVIWwGlVyTOmXQqTbI14&quot;
+  },
+  {
+      &quot;_index&quot;: &quot;cargo-2016.01.06&quot;,
+      &quot;_type&quot;: &quot;buildlog&quot;,
+      &quot;_id&quot;: &quot;AVIWwcuTl4I-hbdW94Ft&quot;
+  }
+]</code></pre>
+
+<p>/:index/:type/:id/_mget</p></li>
+</ul>
+
+<ul>
+<li>批量处理  _bulk</li>
+</ul>
+
+<h3 id="toc_7">插件</h3>
+
+<ul>
+<li>https://mobz.github.io/elasticsearch-head/</li>
+</ul>
+
+<h3 id="toc_8">守护进程</h3>
+
+<h4 id="toc_9"><a href="https://cr.yp.to/daemontools/install.html">daemontools之supervise</a></h4>
+
+<blockquote>
+<p>supervise - starts and monitors a service.</p>
+</blockquote>
+
+<ul>
+<li><code>wget http://cr.yp.to/daemontools/daemontools-0.76.tar.gz</code></li>
+<li><code>tar -zxvf daemontools-0.76.tar.gz</code></li>
+<li><code>cd admin/daemontools-0.76</code></li>
+<li><code>vi src/conf-cc</code> 在<strong>第一行</strong>末尾加上 <code>-include /usr/include/errno.h</code> 避免安装失败</li>
+<li><p><code>package/install</code>         </p></li>
+<li><p><code>ln -s /etc/serivice /service</code></p></li>
+<li><p><code>mkdir /services/somerandomservice</code></p></li>
+<li><p><code>echo -e &#39;#!/bin/sh\nexec somerandomcommand&#39; &gt; /services/somerandomservice/run</code></p></li>
+<li><p><code>chmod 755 /services/somerandomservice/run</code></p></li>
+</ul>
+
+<p>supervise开机任务在<code>/etc/init/svscan.conf</code>中定义了,运行<code>/usr/bin/svscanboot</code>  </p>
+
+<p>supervise的执行命令是supervise Path ，其中Path 是指定路径，可以是相对路径，也可以是绝对路径。在Path路径下，必须有一个run的脚本，supervise调用的就是这个脚本，并监控管理该脚本中运行的程序。run里一定
+supervise的一个重要的功能就是可以检测出run脚本中执行的程序是否正常工作，若发现其已经死掉，supervise将会重新执行run脚本，重新启动指定程序。</p>
+
+<h3 id="toc_10">参考资料</h3>
+
+<p><a href="https://isotope11.com/blog/manage-your-services-with-daemontools">manage-your-services-with-daemontools</a><br>
+<a href="http://wiki.sankuai.com/display/%7Ezhouzhibin/daemontools">daemontools</a></p>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+</body>
+
 </html>
