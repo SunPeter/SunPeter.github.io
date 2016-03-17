@@ -518,13 +518,13 @@ co(function*() {
     return &quot;done&quot;
 })(function(err, final) {
     console.log(final);
-});
+});</code></pre>
 
-###支持promise
-重新定义ReadFile，不过这次不用thunk函数而是promise
-</code></pre>
+<h3 id="toc_3">支持promise</h3>
 
-<p>function ReadFilePromise(path) {
+<p>重新定义ReadFile，不过这次不用thunk函数而是promise</p>
+
+<pre><code class="language-none">function ReadFilePromise(path) {
     return new Promise(function(resolve, reject){
         fs.readFile(path, &quot;utf8&quot;, function(err, data) {
             if (err) {
@@ -534,8 +534,7 @@ co(function*() {
             }
         });
     })
-}
-````</p>
+}</code></pre>
 
 <p>对_next函数,我们也修改一下</p>
 
