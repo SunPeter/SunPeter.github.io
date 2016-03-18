@@ -568,7 +568,6 @@ slave(gen)</code></pre>
     function exec() {
         var res = g.next();
         console.log(res.value);
-        g.throw(new Error(&quot;ssd&quot;))
         if (res.done) {
             return;
         }
